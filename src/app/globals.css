@@ -1,42 +1,128 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  margin: 0;
+  height: 100%;
+  background-color: whitesmoke;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Home page */
+.home-container {
+  padding: 24px;
 }
 
-* {
-  box-sizing: border-box;
+.home-search {
+  display: block;
+  margin-bottom: 24px;
+  padding: 8px 12px;
+  width: 300px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.home-error {
+  color: red;
+}
+
+.countries-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.country-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+
+}
+
+.country-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.country-card__flag {
+  font-size: 3rem;
+}
+
+.country-card__name {
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.country-detail {
+  min-height: 100vh;
+  padding: 32px 24px;
+  background-color: #e8edf5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.country-detail__back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  margin-bottom: 32px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.country-detail__back:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.country-detail__card {
+  max-width: 480px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.country-detail__flag {
+  font-size: 5rem;
+  margin: 0 0 12px;
+  line-height: 1;
+}
+
+.country-detail__name {
+  font-size: 1.6rem;
+  margin: 0 0 24px;
+  color: #222;
+}
+
+.country-detail__info {
+  list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.country-detail__loading {
+  padding: 24px;
+  color: #666;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.country-detail__error {
+  padding: 24px;
+  color: red;
 }
