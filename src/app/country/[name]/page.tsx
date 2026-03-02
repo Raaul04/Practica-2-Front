@@ -7,7 +7,10 @@ import { Country } from "@/types/Countries";
 
 const CountryPage = () => {
   const params = useParams();
-  const name = params.name as string;
+  const rawName = params.name as string;
+
+  const name = decodeURIComponent(rawName);
+
   const router = useRouter();
 
   const [country, setCountry] = useState<Country | null>(null);
@@ -22,7 +25,23 @@ const CountryPage = () => {
   }, [name]);
 
   if (loading) return <div className="country-detail"><p className="country-detail__loading">Cargando...</p></div>;
-  if (error || !country) return <div className="country-detail"><p className="country-detail__error">{error}</p></div>;
+
+  if (error || !country) return (
+    <div className="country-detail">
+      <button className="country-detail__back" onClick={() => router.push("/")}>← Volver</button>
+      <div className="country-detail__card country-detail__card--not-found">
+        <p className="country-detail__flag"></p>
+        <h1 className="country-detail__name">{decodeURIComponent(name)}</h1>
+        <p className="country-detail__not-found-msg">País no encontrado</p>
+        <ul className="country-detail__info">
+          <li><strong>Capital:</strong> —</li>
+          <li><strong>Región:</strong> —</li>
+          <li><strong>Población:</strong> —</li>
+          <li><strong>Idiomas:</strong> —</li>
+        </ul>
+      </div>
+    </div>
+  );
 
   return (
     <div className="country-detail">

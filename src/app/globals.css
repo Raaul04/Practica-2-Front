@@ -5,7 +5,6 @@ body {
   background-color: whitesmoke;
 }
 
-/* Home page */
 .home-container {
   padding: 24px;
 }
@@ -125,4 +124,21 @@ body {
 .country-detail__error {
   padding: 24px;
   color: red;
+}
+
+.country-detail__card--not-found {
+  opacity: 0.6;
+  border-style: dashed;
+  filter: grayscale(0.4);
+}
+
+.country-detail__not-found-msg {
+  display: flex;
+  margin: -16px 0 20px;
+  padding: 4px 12px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
