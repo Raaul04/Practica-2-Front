@@ -9,10 +9,12 @@ type CountryCardProps = {
 
 const CountryCard = ({ country }: CountryCardProps) => {
   const router = useRouter();
-  const slug = country.name.common.toLowerCase();
 
   return (
-    <div className="country-card" onClick={() => router.push(`/country/${slug}`)}>
+    <div
+      className="country-card"
+      onClick={() => router.push(`/country/${encodeURIComponent(country.name.common)}`)}
+    >
       <span className="country-card__flag">{country.flag}</span>
       <p className="country-card__name">{country.name.common}</p>
     </div>
