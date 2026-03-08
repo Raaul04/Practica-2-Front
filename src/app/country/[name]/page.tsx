@@ -6,12 +6,12 @@ import { getCountryByName } from "@/lib/api/countries";
 import { Country } from "@/types/Countries";
 
 const CountryPage = () => {
-  const params = useParams();
-  const rawName = params.name as string;
+  const {name} = useParams() as { name: string }
+  
 
   // decodeURIComponent hace el proceso inverso de encodeURIComponent.
   // Ejemplo: "United%20Kingdom" -> "United Kingdom".
-  const name = decodeURIComponent(rawName);
+  const nameCountry = decodeURIComponent(name);
 
   const router = useRouter();
 
@@ -19,11 +19,20 @@ const CountryPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Este efecto carga el detalle del país desde la API.
+  // Se ejecuta al entrar en la página y también si cambias a otra ruta /country/[name].
   useEffect(() => {
-    getCountryByName(name)
+    // Pide a la API el país cuyo nombre viene en la URL.
+    getCountryByName(nameCountry)
+      // Si va bien, guarda el resultado en el estado `country`.
       .then(setCountry)
+      // Si falla (por ejemplo 404), mostramos mensaje de error.
       .catch(() => setError("País no encontrado"))
+      // Tanto si va bien como si falla, quitamos el estado de carga.
       .finally(() => setLoading(false));
+    // [name] es la dependencia:
+    // - si cambia el nombre en la URL, vuelve a pedir el nuevo país.
+    // - si no cambia, no repite la petición.
   }, [name]);
 
   if (loading) return <div className="country-detail"><p className="country-detail__loading">Cargando...</p></div>;
