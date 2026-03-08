@@ -13,6 +13,8 @@ const CountryCard = ({ country }: CountryCardProps) => {
   return (
     <div
       className="country-card"
+      // encodeURIComponent convierte espacios/símbolos a formato seguro de URL.
+      // Ejemplo: "United Kingdom" -> "United%20Kingdom".
       onClick={() => router.push(`/country/${encodeURIComponent(country.name.common)}`)}
     >
       <span className="country-card__flag">{country.flag}</span>
